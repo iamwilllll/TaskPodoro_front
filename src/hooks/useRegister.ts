@@ -45,7 +45,7 @@ export function useRegister({ resetForm }: useRegisterProps) {
             changeLoadingStatus(false);
         }
     }
-    
+
     return { registerUser, apiError };
 }
 
