@@ -10,7 +10,7 @@ export default function App() {
             <Route path="dashboard" element={<Dashboard />} />
 
             <Route element={<AuthLayout />}>
-                <Route index element={<Login />} />
+                <Route path="/*" element={<Login />} />
                 <Route path="register" element={<Register />} />
             </Route>
         </Routes>
