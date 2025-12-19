@@ -1,9 +1,7 @@
 import { TextField } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import axios from 'axios';
-import { useState } from 'react';
-import { useLoading, useNotification } from '../context/store';
+import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useLogin } from '../hooks';
 
 type LoginT = {
     email: string;
@@ -11,33 +9,12 @@ type LoginT = {
 };
 
 export default function Login() {
-    const [apiError, setApiError] = useState('');
-    const navigate = useNavigate();
-    const { changeLoadingStatus } = useLoading();
-    const { showNotification } = useNotification();
-    const { register, handleSubmit, formState } = useForm<LoginT>();
+    const { register, handleSubmit, formState, reset } = useForm<LoginT>();
     const { errors } = formState;
-
-    const onSubmit1: SubmitHandler<LoginT> = async (formData) => {
-        try {
-            changeLoadingStatus(true);
-            const baseUrl = `${import.meta.env.VITE_BASE_URL}/auth/login`;
-            await axios.post(baseUrl, formData, { withCredentials: true });
-
-            navigate('/dashboard');
-            changeLoadingStatus(false);
-            showNotification('Login was successful');
-        } catch (err: unknown) {
-            if (axios.isAxiosError(err)) {
-                setApiError(err?.response?.data?.error?.message);
-            }
-        } finally {
-            changeLoadingStatus(false);
-        }
-    };
+    const { login, apiError } = useLogin({ resetForm: reset });
 
     return (
-        <form className="font-secondary m-auto flex h-full w-8/10 flex-col justify-center" onSubmit={handleSubmit(onSubmit1)}>
+        <form className="font-secondary m-auto flex h-full w-8/10 flex-col justify-center" onSubmit={handleSubmit(login)}>
             <h2 className="text-secondary-500 mb-5 text-3xl font-semibold">Welcome back</h2>
 
             <TextField
@@ -57,8 +34,11 @@ export default function Login() {
                 error={!!apiError}
                 {...register('password', { required: true })}
             />
-            <p className="text-error h-5">{apiError ?? <span>Ups... An error occurred, please try again later</span>}</p>
-            <p className="text-error m-0 mb-4 h-5"> {errors.password && <span>This field is required</span>}</p>
+
+            <div className="flex w-full justify-between">
+                <p className="text-error h-5">{apiError ?? <span>Ups... An error occurred, please try again later</span>}</p>
+                <p className="text-error m-0 mb-4 h-5"> {errors.password && <span>This field is required</span>}</p>
+            </div>
 
             <input
                 type="submit"
