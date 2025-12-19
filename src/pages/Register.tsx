@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import { Link, type Register } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 
 type RegisterT = {
@@ -21,9 +21,8 @@ export default function Register() {
         console.log(data);
     };
 
-    
     return (
-        <form className="font-secondary m-auto flex h-full w-7/10 flex-col justify-center" onSubmit={handleSubmit(onSubmit1)}>
+        <form className="font-secondary m-auto flex h-full w-8/10 flex-col justify-center" onSubmit={handleSubmit(onSubmit1)}>
             <h2 className="text-secondary-500 mb-5 text-3xl font-semibold">Create an account</h2>
             <TextField
                 label="Name"
@@ -31,21 +30,21 @@ export default function Register() {
                 className="transition hover:scale-101"
                 {...register('name', { required: true })}
             />
-            <p className="text-error m-0 mb-3 h-5"> {errors.name && <span>This field is required</span>}</p>
+            <p className="text-error m-0 mb-4 h-5"> {errors.name && <span>This field is required</span>}</p>
             <TextField
                 label="Username"
                 variant="outlined"
                 className="transition hover:scale-101"
                 {...register('username', { required: true })}
             />
-            <p className="text-error m-0 mb-3 h-5"> {errors.username && <span>This field is required</span>}</p>
+            <p className="text-error m-0 mb-4 h-5"> {errors.username && <span>This field is required</span>}</p>
             <TextField
                 label="Email"
                 variant="outlined"
                 className="transition hover:scale-101"
                 {...register('email', { required: true })}
             />
-            <p className="text-error m-0 mb-3 h-5"> {errors.email && <span>This field is required</span>}</p>
+            <p className="text-error m-0 mb-4 h-5"> {errors.email && <span>This field is required</span>}</p>
             <TextField
                 label="Password"
                 variant="outlined"
@@ -53,7 +52,7 @@ export default function Register() {
                 type="password"
                 {...register('password', { required: true })}
             />
-            <p className="text-error m-0 mb-3 h-5"> {errors.password && <span>This field is required</span>}</p>
+            <p className="text-error m-0 mb-4 h-5"> {errors.password && <span>This field is required</span>}</p>
             <TextField
                 label="Repeat password"
                 variant="outlined"
@@ -61,7 +60,7 @@ export default function Register() {
                 type="password"
                 {...register('repeat_password', { required: true })}
             />
-            <p className="text-error m-0 mb-3 h-5"> {errors.repeat_password && <span>This field is required</span>}</p>
+            <p className="text-error m-0 mb-4 h-5"> {errors.repeat_password && <span>This field is required</span>}</p>
 
             <input
                 type="submit"
