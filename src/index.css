@@ -42,6 +42,24 @@ body,
     height: 100%;
 }
 
+.alert {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 300px;
+    animation: alert-in 0.5s;
+    transition: 5s;
+}
+
+@keyframes alert-in {
+    0% {
+        right: -500px;
+    }
+    100% {
+        right: 16px;
+    }
+}
+
 .rough_texture_background {
     background-image: url('/rough_texture.png');
     background-repeat: repeat;

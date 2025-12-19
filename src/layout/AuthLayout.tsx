@@ -1,13 +1,14 @@
 import { Link, Outlet } from 'react-router';
 import { ReactSVG } from 'react-svg';
-
+import AppLayout from './AppLayout'
 type AuthLayoutProps = {
     message?: string;
 };
 
 export default function AuthLayout({ message }: AuthLayoutProps) {
     return (
-        <section className="flex h-full">
+<AppLayout>
+            <section className="flex h-full">
             <section
                 className={
                     'bg-secondary-500 relative lg:flex w-6/10 flex-col justify-between overflow-hidden hidden  ' +
@@ -30,8 +31,9 @@ export default function AuthLayout({ message }: AuthLayoutProps) {
                 </h2>
             </section>
             <section className="h-full w-full lg:w-4/10">
-                <Outlet />
+                <Outlet  />
             </section>
         </section>
+</AppLayout>
     );
 }
