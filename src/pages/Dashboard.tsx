@@ -57,9 +57,10 @@ export default function Dashboard() {
         }
     };
 
-    if(user)return (
-        <AppLayout>
-            <button onClick={handleLogout}>Log out</button>
-        </AppLayout>
-    );
+    if (user)
+        return (
+            <AppLayout>
+                <button onClick={handleLogout}>Log out</button>
+            </AppLayout>
+        );
 }

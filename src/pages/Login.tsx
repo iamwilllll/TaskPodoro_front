@@ -15,11 +15,8 @@ export default function Login() {
     const navigate = useNavigate();
     const { changeLoadingStatus } = useLoading();
     const { showNotification } = useNotification();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<LoginT>();
+    const { register, handleSubmit, formState } = useForm<LoginT>();
+    const { errors } = formState;
 
     const onSubmit1: SubmitHandler<LoginT> = async (formData) => {
         try {
