@@ -9,7 +9,8 @@ type AppLayoutProps = {
 
 export default function AppLayout({ children }: AppLayoutProps) {
     const { isLoading } = useLoading();
-    const { isVisible, message } = useNotification();
+    const { message, messageIsVisible, messageShouldRender, linkTo, linkLabel, linkIsVisible, linkShouldRender } =
+        useNotification();
 
     return (
         <div className="size-full">
