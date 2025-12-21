@@ -3,6 +3,7 @@ import AuthLayout from './layout/AuthLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import VerifyUser from './pages/VerifyUser';
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
             <Route element={<AuthLayout />}>
                 <Route path="/*" element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="verifyUser" element={<VerifyUser />} />
             </Route>
         </Routes>
     );
