@@ -10,27 +10,35 @@ type useLoginProps = {
 
 export function useLogin({ resetForm }: useLoginProps) {
     const { changeLoadingStatus } = useLoading();
-    const { showNotification } = useNotification();
+    const { showAlertMessage, showAlertLink } = useNotification();
     const navigate = useNavigate();
 
     const [apiError, setApiError] = useState('');
 
     async function login(formData: LoginT) {
+        const controller = new AbortController();
+        const url = `${import.meta.env.VITE_BASE_URL}/auth/login`;
+
         try {
             changeLoadingStatus(true);
-            const url = `${import.meta.env.VITE_BASE_URL}/auth/login`;
+
             await axios.post(url, formData, { withCredentials: true });
+
             navigate('/dashboard');
-            changeLoadingStatus(false);
-            showNotification('Login was successful');
+            showAlertMessage({ message: 'Login was successful' });
             if (resetForm) resetForm();
         } catch (err: unknown) {
             if (axios.isAxiosError(err)) {
                 setApiError(err?.response?.data?.error?.message);
+
+                if (err.status === 403) {
+                    showAlertLink({ linkTo: '/verifyUser', linkLabel: 'Verify your user', duration: 5000 });
+                }
             }
         } finally {
             changeLoadingStatus(false);
         }
+        return controller.abort();
     }
     return { login, apiError };
 }

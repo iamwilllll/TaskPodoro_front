@@ -19,12 +19,19 @@ export default function AppLayout({ children }: AppLayoutProps) {
                 <div className="loader size-25"></div>
             </div>
 
-            {isVisible && (
-                <Alert severity="success" className="alert">
+            {messageShouldRender && (
+                <Alert severity="success" className={`alert ${messageIsVisible ? 'alert-in' : 'alert-out'}`}>
                     {message}
                 </Alert>
             )}
 
+            {linkShouldRender && (
+                <Alert severity="info" className={`alert ${linkIsVisible ? 'alert-in' : 'alert-out'}`}>
+                    <Link className="font-semibold underline" to={linkTo}>
+                        {linkLabel}
+                    </Link>
+                </Alert>
+            )}
             {children}
         </div>
     );
