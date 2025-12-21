@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import axios, { isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useLoading, useUser } from '../context/store';
+import { useLoading, useUser } from '../context';
 
 export function useFetchUser() {
     const navigate = useNavigate();

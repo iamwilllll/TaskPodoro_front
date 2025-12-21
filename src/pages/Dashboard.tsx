@@ -1,5 +1,5 @@
 import AppLayout from '../layout/AppLayout';
-import { useUser } from '../context/store';
+import { useUser } from '../context';
 import {} from '../hooks/useLogout';
 import { useFetchUser, useLogout } from '../hooks';
 

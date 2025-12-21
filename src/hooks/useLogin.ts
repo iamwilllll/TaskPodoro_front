@@ -1,12 +1,8 @@
 import { useNavigate } from 'react-router';
-import { useLoading, useNotification } from '../context/store';
+import { useLoading, useNotification } from '../context';
 import axios from 'axios';
 import { useState } from 'react';
-
-type LoginT = {
-    email: string;
-    password: string;
-};
+import type { LoginT } from '../types';
 
 type useLoginProps = {
     resetForm?: () => void;

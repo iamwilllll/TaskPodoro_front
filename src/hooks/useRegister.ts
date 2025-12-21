@@ -1,15 +1,8 @@
 import { useNavigate } from 'react-router';
-import { useLoading, useNotification } from '../context/store';
+import { useLoading, useNotification } from '../context';
 import { useState } from 'react';
 import axios, { isAxiosError } from 'axios';
-
-type RegisterT = {
-    name: string;
-    username: string;
-    email: string;
-    password: string;
-    repeat_password: string;
-};
+import type { RegisterT } from '../types';
 
 type useRegisterProps = {
     resetForm?: () => void;
