@@ -9,6 +9,7 @@ export function useLogout() {
     const navigate = useNavigate();
 
     async function logout() {
+        const controller = new AbortController();
         try {
             const logoutUrl = `${import.meta.env.VITE_BASE_URL}/auth/logout`;
             changeLoadingStatus(true);
@@ -27,6 +28,7 @@ export function useLogout() {
         } finally {
             changeLoadingStatus(false);
         }
+        return controller.abort();
     }
 
     return { logout };

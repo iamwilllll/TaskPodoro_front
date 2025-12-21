@@ -15,12 +15,12 @@ export function useRegister({ resetForm }: useRegisterProps) {
     const [apiError, setApiError] = useState('');
 
     async function registerUser(formData: RegisterT) {
+        const controller = new AbortController();
         const registerObj: RegisterT = {
             ...formData,
             username: formData.username.toLocaleLowerCase(),
             email: formData.email.toLocaleLowerCase(),
         };
-
         try {
             const url = `${import.meta.env.VITE_BASE_URL}/auth/register`;
             changeLoadingStatus(true);
@@ -37,6 +37,8 @@ export function useRegister({ resetForm }: useRegisterProps) {
         } finally {
             changeLoadingStatus(false);
         }
+
+        return controller.abort();
     }
 
     return { registerUser, apiError };
