@@ -1,21 +1,21 @@
 import { Controller, useForm } from 'react-hook-form';
-import { useVerifyUser } from '../hooks';
 import type { VerifyUserT } from '../types';
 import { TextField } from '@mui/material';
-import OtpInput from 'react-otp-input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
+import OTPInput from 'react-otp-input';
+import { useVerifyPassCode } from '../hooks';
 
-export default function VerifyUser() {
+export default function VerifyPassCode() {
     const { handleSubmit, register, formState, control } = useForm<VerifyUserT>();
     const { errors } = formState;
-    const { verifyUser, apiError } = useVerifyUser();
+    const { apiError, verifyCode } = useVerifyPassCode();
+    const navigate = useNavigate();
 
-    //? create resend otp verification code
-    const resendCode = () => {};
+    const resendCode = () => navigate('/forgotYourPassword');
 
     return (
-        <form className="font-secondary m-auto flex h-full w-8/10 flex-col justify-center" onSubmit={handleSubmit(verifyUser)}>
-            <h2 className="text-secondary-500 mb-5 text-3xl font-semibold">Verify your account</h2>
+        <form className="font-secondary m-auto flex h-full w-8/10 flex-col justify-center" onSubmit={handleSubmit(verifyCode)}>
+            <h2 className="text-secondary-500 mb-5 text-3xl font-semibold">Reset your password</h2>
             <TextField
                 label="Email"
                 variant="outlined"
@@ -44,7 +44,7 @@ export default function VerifyUser() {
                     },
                 }}
                 render={({ field }) => (
-                    <OtpInput
+                    <OTPInput
                         value={field.value || ''}
                         onChange={field.onChange}
                         numInputs={6}
@@ -58,7 +58,7 @@ export default function VerifyUser() {
             />
             <div className="flex w-full items-center justify-between">
                 <p className="text-error m-0 mb-4 h-5"> {errors.code && <span>{errors.code.message}</span>}</p>
-                <p className="text-error mb-5 h-5">{apiError ?? <span>err</span>}</p>
+                <p className="text-error mb-5 h-5">{apiError ?? <span>Ups... An error occurred, please try again later</span>}</p>
             </div>
             <input
                 type="submit"

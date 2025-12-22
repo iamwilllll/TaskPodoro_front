@@ -15,3 +15,12 @@ export type VerifyUserT = {
     code: string;
     email: string;
 };
+
+export type ForgotPasswordT = {
+    email: string;
+};
+
+export type ResetPasswordT = {
+    password: string;
+    repeat_password: string;
+};

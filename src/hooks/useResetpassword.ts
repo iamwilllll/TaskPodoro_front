@@ -1,32 +1,31 @@
-import { useNavigate } from 'react-router';
+import { useState } from 'react';
+import type { ResetPasswordT } from '../types';
 import { useLoading, useNotification } from '../context';
 import axios, { isAxiosError } from 'axios';
-import { useState } from 'react';
-import type { VerifyUserT } from '../types/index';
+import { useNavigate } from 'react-router';
 
-export function useVerifyUser() {
+export function useResetPassword() {
+    const [apiError, setApiError] = useState('');
     const { changeLoadingStatus } = useLoading();
     const { showAlertMessage } = useNotification();
     const navigate = useNavigate();
-    const [apiError, setApiError] = useState('');
-    const url = `${import.meta.env.VITE_BASE_URL}/auth/verifyUser`;
+    const url = `${import.meta.env.VITE_BASE_URL}/auth/resetPassword`;
 
-    async function verifyUser(formData: VerifyUserT) {
+    async function resetPassword(formData: ResetPasswordT) {
         try {
             changeLoadingStatus(true);
             await axios.post(url, formData, { withCredentials: true });
-            showAlertMessage({ message: 'User verification was successful' });
+            showAlertMessage({ message: 'Password reset successful' });
             navigate('/');
         } catch (err) {
             if (isAxiosError(err)) {
                 setApiError(err.response?.data.message);
             }
-
             console.log(err);
         } finally {
             changeLoadingStatus(false);
         }
     }
 
-    return { verifyUser, apiError };
+    return { apiError, resetPassword };
 }

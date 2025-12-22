@@ -2,11 +2,7 @@ import { TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useLogin } from '../hooks';
-
-type LoginT = {
-    email: string;
-    password: string;
-};
+import type { LoginT } from '../types';
 
 export default function Login() {
     const { register, handleSubmit, formState, reset } = useForm<LoginT>();
