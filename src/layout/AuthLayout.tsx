@@ -17,7 +17,7 @@ export default function AuthLayout({ message }: AuthLayoutProps) {
                     }
                 >
                     <Link to="/">
-                        <ReactSVG src="/pomodoro_icon.svg" className="p-8" />
+                        <ReactSVG src="/pomodoro_icon.svg" className="p-8 text-white" />
                     </Link>
 
                     <h2 className="p-8 text-7xl font-extralight text-white">
