@@ -68,7 +68,7 @@ export default function SideBar({ className }: SideBarProps) {
                     <button onClick={logout} title="log out">
                         <ReactSVG
                             src="/static/logoutIcon.svg"
-                            className="hover:text-secondary-600 text-error  cursor-pointer transition duration-500 hover:scale-115 "
+                            className="hover:text-secondary-600 text-error cursor-pointer transition duration-500 hover:scale-115"
                         />
                     </button>
                 </li>

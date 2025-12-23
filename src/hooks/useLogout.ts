@@ -15,7 +15,7 @@ export function useLogout() {
             changeLoadingStatus(true);
             await axios.post(logoutUrl, {}, { withCredentials: true });
             navigate('/');
-            showAlertMessage({message:'Log out successful'});
+            showAlertMessage({ message: 'Log out successful' });
             resetUser();
         } catch (err) {
             if (axios.isCancel(err)) return;

@@ -13,7 +13,6 @@ export default function ProtectedRoute() {
     if (!currentUser) {
         return <Navigate to="/" replace />;
     }
-    
 
     return <Outlet />;
 }
