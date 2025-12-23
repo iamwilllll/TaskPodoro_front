@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 export function useLogout() {
     const { changeLoadingStatus } = useLoading();
-    const { showNotification } = useNotification();
+    const { showAlertMessage } = useNotification();
     const { resetUser } = useUser();
     const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ export function useLogout() {
             changeLoadingStatus(true);
             await axios.post(logoutUrl, {}, { withCredentials: true });
             navigate('/');
-            showNotification('Log out successful');
+            showAlertMessage({message:'Log out successful'});
             resetUser();
         } catch (err) {
             if (axios.isCancel(err)) return;
