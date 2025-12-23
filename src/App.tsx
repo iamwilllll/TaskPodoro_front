@@ -11,17 +11,12 @@ import AppLayout from './layout/AppLayout';
 import ProtectedRoute from './components/ProtectedRoute';
 import Groups from './pages/Groups';
 import Settings from './pages/Settings';
+import Error_404 from './pages/Error_404';
 
 export default function App() {
     return (
         <Routes>
-            <Route element={<ProtectedRoute />}>
-                <Route element={<AppLayout />}>
-                    <Route path="overview" element={<Overview />} />
-                    <Route path="groups" element={<Groups />} />
-                    <Route path="settings" element={<Settings />} />
-                </Route>
-            </Route>
+            <Route path="/*" element={<Error_404 />}></Route>
 
             <Route element={<AuthLayout />}>
                 <Route path="/" element={<Login />} />
@@ -30,6 +25,14 @@ export default function App() {
                 <Route path="forgotYourPassword" element={<ForgotPassword />} />
                 <Route path="verifyPassCode" element={<VerifyPassCode />} />
                 <Route path="resetPassword" element={<ResetPassword />} />
+            </Route>
+
+            <Route element={<ProtectedRoute />}>
+                <Route element={<AppLayout />}>
+                    <Route path="overview" element={<Overview />} />
+                    <Route path="groups" element={<Groups />} />
+                    <Route path="settings" element={<Settings />} />
+                </Route>
             </Route>
         </Routes>
     );

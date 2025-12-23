@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import { useFetchUser } from '../hooks';
 import type { ReactNode } from 'react';
 
-export default function AppLayout({ children }: { children?: ReactNode }) {
+export default function AppLayout({ children, className }: { children?: ReactNode; className?: string }) {
     useFetchUser();
 
     const { isLoading } = useLoading();
@@ -14,7 +14,7 @@ export default function AppLayout({ children }: { children?: ReactNode }) {
         useNotification();
 
     return (
-        <div className={`size-full lg:grid ${children ? '' : 'grid-cols-5 grid-rows-10 p-5'}`}>
+        <div className={`size-full lg:grid ${children ? '' : 'grid-cols-5 grid-rows-10 p-5'} ${className}`}>
             <div
                 className={`bg-modal absolute top-0 left-0 z-1 size-full items-center justify-center ${isLoading ? 'flex' : 'hidden'}`}
             >
