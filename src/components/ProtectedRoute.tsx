@@ -1,17 +1,19 @@
-import { Navigate } from 'react-router-dom';
-import { useUser } from '../context';
-import type { ReactNode } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useLoading, useUser } from '../context';
 
-type Props = {
-    children: ReactNode;
-};
+export default function ProtectedRoute() {
+    const { currentUser, isCheckingAuth } = useUser();
+    const { changeLoadingStatus } = useLoading();
 
-export default function ProtectedRoute({ children }: Props) {
-    const { currentUser } = useUser();
-
-    if (!currentUser) {
-        return <Navigate to="/login" replace />;
+    if (isCheckingAuth) {
+        changeLoadingStatus(true);
+        return null;
     }
 
-    return children;
+    if (!currentUser) {
+        return <Navigate to="/" replace />;
+    }
+    
+
+    return <Outlet />;
 }

@@ -1,6 +1,6 @@
 export const useUser = create<useUserProps>((set) => ({
     currentUser: {},
-
+    isCheckingAuth: false,
     setUser: (user) => set({ currentUser: user }),
     resetUser: () => set({ currentUser: null }),
 }));
@@ -14,7 +14,8 @@ type useLoadingProps = {
 
 type useUserProps = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    currentUser: any;
+    currentUser: any | null;
+    isCheckingAuth: boolean;
     setUser: (user: unknown) => void;
     resetUser: () => void;
 };
@@ -25,3 +26,5 @@ export const useLoading = create<useLoadingProps>()((set) => ({
 }));
 
 export * from './ui/alerts.store';
+
+

@@ -24,9 +24,9 @@ export function useLogin({ resetForm }: useLoginProps) {
 
             await axios.post(url, formData, { withCredentials: true });
 
-            navigate('/overview');
-            showAlertMessage({ message: 'Login was successful' });
             if (resetForm) resetForm();
+            showAlertMessage({ message: 'Login was successful' });
+            navigate('/overview');
         } catch (err: unknown) {
             if (axios.isAxiosError(err)) {
                 setApiError(err?.response?.data?.error?.message);
