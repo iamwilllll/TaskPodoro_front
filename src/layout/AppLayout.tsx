@@ -1,21 +1,22 @@
-import { type ReactNode } from 'react';
 import { useLoading, useNotification } from '../context';
 import { Alert } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import SideBar from '../components/SideBar';
+import Header from '../components/Header';
+import { useFetchUser } from '../hooks';
+import type { ReactNode } from 'react';
 
-type AppLayoutProps = {
-    children?: ReactNode;
-};
+export default function AppLayout({ children }: { children?: ReactNode }) {
+    useFetchUser();
 
-export default function AppLayout({ children }: AppLayoutProps) {
     const { isLoading } = useLoading();
     const { message, messageIsVisible, messageShouldRender, linkTo, linkLabel, linkIsVisible, linkShouldRender } =
         useNotification();
 
     return (
-        <div className="size-full">
+        <div className={`size-full lg:grid ${children ? '' : 'grid-cols-5 grid-rows-10 p-5'}`}>
             <div
-                className={`bg-modal absolute top-0 left-0 z-5 size-full items-center justify-center ${isLoading ? 'flex' : 'hidden'}`}
+                className={`bg-modal absolute top-0 left-0 z-1 size-full items-center justify-center ${isLoading ? 'flex' : 'hidden'}`}
             >
                 <div className="loader size-25"></div>
             </div>
@@ -33,7 +34,16 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     </Link>
                 </Alert>
             )}
-            {children}
+
+            {children ? (
+                children
+            ) : (
+                <>
+                    <SideBar className="col-start-1 col-end-2 row-start-1 row-end-11" />
+                    <Header className="col-start-2 col-end-11 row-start-1 row-end-1" />
+                    <section className="col-start-2 col-end-11 row-start-2 row-end-11">{<Outlet />}</section>
+                </>
+            )}
         </div>
     );
 }
