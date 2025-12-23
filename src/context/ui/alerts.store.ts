@@ -2,8 +2,9 @@ import { create } from 'zustand';
 import type { LoadingProps, NotificationStore } from './types';
 
 export const useLoading = create<LoadingProps>()((set) => ({
-    isLoading: false,
+    isLoading: true,
     changeLoadingStatus: (value) => set(() => ({ isLoading: value })),
+    
 }));
 
 export const useNotification = create<NotificationStore>((set) => ({

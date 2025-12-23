@@ -19,7 +19,7 @@ export function useFetchUser() {
             } catch (err) {
                 if (axios.isCancel(err)) return;
                 if (isAxiosError(err)) {
-                    if (err.response?.status === 401) navigate('/');
+                    if (err.response?.status === 401) return navigate('/');
                     console.error(err.message);
                 }
             } finally {
