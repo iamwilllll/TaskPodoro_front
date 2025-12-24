@@ -20,8 +20,8 @@ export default function App() {
 
             <Route element={<AuthLayout />}>
                 <Route path="/" element={<Login />} />
-                <Route path="register" element={<Register />} />
                 <Route path="verifyUser" element={<VerifyUser />} />
+                <Route path="register" element={<Register />} />
                 <Route path="forgotYourPassword" element={<ForgotPassword />} />
                 <Route path="verifyPassCode" element={<VerifyPassCode />} />
                 <Route path="resetPassword" element={<ResetPassword />} />

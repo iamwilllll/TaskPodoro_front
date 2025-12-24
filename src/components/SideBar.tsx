@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { ReactSVG } from 'react-svg';
 import { useLogout } from '../hooks';
 
@@ -18,8 +18,10 @@ export default function SideBar({ className }: SideBarProps) {
     const { logout } = useLogout();
 
     return (
-        <nav className={`fixed top-4 right-4 flex-col lg:static ${className}`}>
-            <ReactSVG src="/pomodoro_icon.svg" className="hidden h-15 w-full text-black lg:block" />
+        <nav className={`fixed z-1000  top-4 right-4 flex-col lg:static ${className}`}>
+            <Link to="overview  h-15">
+                <ReactSVG src="/pomodoro_icon.svg" className="hidden w-full text-black lg:block" />
+            </Link>
 
             <button
                 title="open modal"
@@ -30,7 +32,7 @@ export default function SideBar({ className }: SideBarProps) {
             </button>
 
             <ul
-                className={`bg-modal fixed right-0 flex size-full flex-col items-center justify-center gap-5 transition-all duration-500 lg:static lg:justify-start lg:bg-transparent ${modalActive ? 'top-0' : '-top-500'}`}
+                className={`bg-sidebar fixed right-0 flex size-full flex-col items-center justify-center gap-5 transition-all duration-500 lg:static lg:justify-start lg:bg-transparent ${modalActive ? 'top-0' : '-top-500'}`}
             >
                 {Links.map((link, index) => (
                     <li key={index} className="flex h-15 w-full">
@@ -41,7 +43,7 @@ export default function SideBar({ className }: SideBarProps) {
                             {({ isActive }) => {
                                 const focusRouteStyle = isActive
                                     ? 'lg:text-secondary-600  text-white'
-                                    : 'lg:text-secondary-400  text-secondary-600';
+                                    : 'lg:text-secondary-400  text-secondary-400';
 
                                 return (
                                     <>

@@ -14,7 +14,7 @@ export default function AppLayout({ children, className }: { children?: ReactNod
         useNotification();
 
     return (
-        <div className={`size-full lg:grid ${children ? '' : 'grid-cols-5 grid-rows-10 p-5'} ${className}`}>
+        <div className={`size-full  lg:grid ${children ? '' : 'grid-cols-5 grid-rows-10 p-5'} ${className}`}>
             <div
                 className={`bg-modal absolute top-0 left-0 z-1 size-full items-center justify-center ${isLoading ? 'flex' : 'hidden'}`}
             >
@@ -39,7 +39,7 @@ export default function AppLayout({ children, className }: { children?: ReactNod
                 children
             ) : (
                 <>
-                    <SideBar className="col-start-1 col-end-2 row-start-1 row-end-11" />
+                    <SideBar className="col-start-1 col-end-2 row-start-1 row-end-10" />
                     <Header className="col-start-2 col-end-11 row-start-1 row-end-1" />
                     <section className="col-start-2 col-end-11 row-start-2 row-end-11">{<Outlet />}</section>
                 </>
