@@ -6,3 +6,6 @@ export * from './useLogout';
 export * from './useForgotPass';
 export * from './useVerifyPassCode';
 export * from './useResetpassword';
+
+export * from './usePagination';
+
